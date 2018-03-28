@@ -2,15 +2,18 @@
 
 namespace app\controllers;
 
+use app\models\Product;
 use Yii;
+use yii\data\Pagination;
 use yii\filters\AccessControl;
+use yii\helpers\Html;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 
-class SiteController extends Controller
+class SiteController extends AppController
 {
     /**
      * {@inheritdoc}
@@ -125,4 +128,15 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionSearch($qsearch)
+    {
+        $qsearch=trim($qsearch);
+        if(!$qsearch) return $this->render('search', compact('qsearch'));
+        $query=Product::find()->where(['like', 'name', Html::encode($qsearch)]);
+        $pages=new Pagination(['totalCount' => $query->count(), 'pageSize' => 9, 'forcePageParam' => false, 'pageSizeParam' => false]);
+        $products = $query->offset($pages->offset)->limit($pages->limit)->all();
+        return $this->render('search', compact('products','pages', 'qsearch'));
+    }
+
 }
