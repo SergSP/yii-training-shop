@@ -118,9 +118,9 @@
                                     <div class="single-products">
                                         <div class="productinfo text-center">
                                             <a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $hit->id]) ?>"><?= \yii\helpers\Html::img("@web/images/products/{$hit->img}",['alt' => $hit->name]) ?></a>
-                                            <h2><?= ($hit->sale_price!=0)? "<s>$".$hit->price."</s>&nbsp;&nbsp;$".$hit->sale_price:"$".$hit->price?></h2>
+                                            <h2><?= ($hit->price!=0)? "<s>$".$hit->price."</s>&nbsp;&nbsp;$".$hit->sale_price:"$".$hit->sale_price?></h2>
                                             <p><a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $hit->id]) ?>"> <?= $hit->name ?></a></p>
-                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            <a href="<?= \yii\helpers\Url::to(['cart/add', 'id' => $hit->id]) ?>" data-id="<?= $hit->id ?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </div>
                                         <?php if($hit->new): echo \yii\helpers\Html::img("@web/images/home/new.png",['alt' => $hit->name, 'class'=>'new']); endif; ?>
                                         <?php if($hit->sale_price!=0): echo \yii\helpers\Html::img("@web/images/home/sale.png",['alt' => $hit->name, 'class'=>'new']); endif; ?>

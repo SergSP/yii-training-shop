@@ -47,32 +47,32 @@
                 <div class="features_items"><!--features_items-->
                     <h2 class="title text-center"><?= $catinfo->name ?></h2>
                     <?php if(!empty($products)):?>
-                    <?php foreach ($products as $product) { ?>
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper">
-                                <div class="single-products">
-                                    <div class="productinfo text-center">
-                                        <a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $product->id]) ?>"><?= \yii\helpers\Html::img("@web/images/products/{$product->img}",['alt' => $product->name]) ?></a>
-                                        <h2><?= ($product->sale_price!=0)? "<s>$".$product->price."</s>&nbsp;&nbsp;$".$product->sale_price:"$".$product->price?></h2>
-                                        <p><a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $product->id]) ?>"> <?= $product->name ?></a></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        <?php foreach ($products as $product) { ?>
+                            <div class="col-sm-4">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $product->id]) ?>"><?= \yii\helpers\Html::img("@web/images/products/{$product->img}",['alt' => $product->name]) ?></a>
+                                            <h2><?= ($product->price!=0)? "<s>$".$product->price."</s>&nbsp;&nbsp;$".$product->sale_price:"$".$product->sale_price?></h2>
+                                            <p><a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $product->id]) ?>"> <?= $product->name ?></a></p>
+                                            <a href="<?= \yii\helpers\Url::to(['cart/add', 'id' => $product->id]) ?>" data-id="<?= $product->id ?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </div>
+                                        <?php if($product->new): echo \yii\helpers\Html::img("@web/images/home/new.png",['alt' => $product->name, 'class'=>'new']); endif; ?>
+                                        <?php if($product->sale_price!=0): echo \yii\helpers\Html::img("@web/images/home/sale.png",['alt' => $product->name, 'class'=>'new']); endif; ?>
                                     </div>
-                                    <?php if($product->new): echo \yii\helpers\Html::img("@web/images/home/new.png",['alt' => $product->name, 'class'=>'new']); endif; ?>
-                                    <?php if($product->sale_price!=0): echo \yii\helpers\Html::img("@web/images/home/sale.png",['alt' => $product->name, 'class'=>'new']); endif; ?>
-                                </div>
-                                <div class="choose">
-                                    <ul class="nav nav-pills nav-justified">
-                                        <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                        <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                                    </ul>
+                                    <div class="choose">
+                                        <ul class="nav nav-pills nav-justified">
+                                            <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                                            <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php } else:?>
+                        <?php } else:?>
                         <h2>Категория пуста</h2>
                     <?php endif; ?>
                     <div class="clearfix"></div>
-<?= \yii\widgets\LinkPager::widget(['pagination' => $pages]) ?>
+                    <?= \yii\widgets\LinkPager::widget(['pagination' => $pages]) ?>
                 </div><!--features_items-->
             </div>
         </div>

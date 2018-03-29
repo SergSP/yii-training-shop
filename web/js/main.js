@@ -3,12 +3,90 @@
 $('#sl2').slider();
 
 $('.catalog').dcAccordion({
-	speed: 300
+    speed: 300
 });
 
 var RGBChange = function() {
     $('#RGB').css('background', 'rgb('+r.getValue()+','+g.getValue()+','+b.getValue()+')')
 };
+function showCart(cart) {
+    $('#cart .modal-body').html(cart);
+    $('#cart').modal();
+
+}
+function getCart() {
+    showCart('<div class="cssload-thecube">\n' +
+        '\t<div class="cssload-cube cssload-c1"></div>\n' +
+        '\t<div class="cssload-cube cssload-c2"></div>\n' +
+        '\t<div class="cssload-cube cssload-c4"></div>\n' +
+        '\t<div class="cssload-cube cssload-c3"></div>\n' +
+        '</div><br />');
+
+    $.ajax({
+        url: '/cart/show',
+        type: 'get',
+        success: function (res) {
+            showCart(res);
+        }
+    })
+    return false;
+}
+function delCartItem(id) {
+    $('#cart .modal-body').html('<div class="cssload-thecube">\n' +
+        '\t<div class="cssload-cube cssload-c1"></div>\n' +
+        '\t<div class="cssload-cube cssload-c2"></div>\n' +
+        '\t<div class="cssload-cube cssload-c4"></div>\n' +
+        '\t<div class="cssload-cube cssload-c3"></div>\n' +
+        '</div><br />');
+
+    $.ajax({
+        url: '/cart/delitem',
+        data: {id: id},
+        type: 'get',
+        success: function (res) {
+            showCart(res);
+        }
+    })
+}
+
+function clearCart() {
+    $('#cart .modal-body').html('<div class="cssload-thecube">\n' +
+        '\t<div class="cssload-cube cssload-c1"></div>\n' +
+        '\t<div class="cssload-cube cssload-c2"></div>\n' +
+        '\t<div class="cssload-cube cssload-c4"></div>\n' +
+        '\t<div class="cssload-cube cssload-c3"></div>\n' +
+        '</div><br />');
+
+    $.ajax({
+        url: '/cart/clear',
+        type: 'get',
+        success: function (res) {
+            showCart(res);
+        }
+    })
+
+}
+$('.add-to-cart').on('click',function (e) {
+    e.preventDefault();
+    var id = $(this).data('id'),
+        qty = $('#qty').val();
+
+    showCart('<div class="cssload-thecube">\n' +
+        '\t<div class="cssload-cube cssload-c1"></div>\n' +
+        '\t<div class="cssload-cube cssload-c2"></div>\n' +
+        '\t<div class="cssload-cube cssload-c4"></div>\n' +
+        '\t<div class="cssload-cube cssload-c3"></div>\n' +
+        '</div><br />');
+
+    $.ajax({
+        url: '/cart/add',
+        data: {id: id, qty: qty},
+        type: 'get',
+        success: function (res) {
+            showCart(res);
+        }
+    })
+});
 
 /*scroll to top*/
 

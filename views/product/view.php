@@ -90,14 +90,14 @@
                             <p>Web ID: <?= $product->id ?></p>
                             <img src="/images/product-details/rating.png" alt="" />
                             <span>
-									<span>US <?= ($product->sale_price!=0)? "<s>$".$product->price."</s>&nbsp;&nbsp;$".$product->sale_price:"$".$product->price?></span>
-									<label>Quantity:</label>
-									<input type="text" value="3" />
-									<button type="button" class="btn btn-fefault cart">
-										<i class="fa fa-shopping-cart"></i>
-Add to cart
-</button>
-								</span>
+                                <span>US <?= ($product->price!=0)? "<s>$".$product->sale_price."</s>&nbsp;&nbsp;$".$product->price:"$".$product->sale_price?></span>
+                                <label>Quantity:</label>
+                                <input type="text" value="1" id="qty" />
+                                <button type="button" class="btn btn-fefault cart add-to-cart" data-id="<?=$product->id?>">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    Add to cart
+                                </button>
+                            </span>
                             <p><b>Availability:</b> In Stock</p>
                             <p><b>Condition:</b> New</p>
                             <p><b>Brand:</b> <a href="<?= \yii\helpers\Url::to(['category/view', 'id' => $product->category->id]) ?>"><?= $product->category->name ?></a></p>
@@ -106,7 +106,7 @@ Add to cart
                     </div>
                 </div><!--/product-details-->
 
-                <!--					<div class="category-tab shop-details-tab"><!--category-tab-->-->
+                <!--					<div class="category-tab shop-details-tab"><!--category-tab-->
                 <!--						<div class="col-sm-12">-->
                 <!--							<ul class="nav nav-tabs">-->
                 <!--								<li><a href="#details" data-toggle="tab">Details</a></li>-->
@@ -294,7 +294,7 @@ Add to cart
                 <!--							</div>-->
                 <!---->
                 <!--						</div>-->
-                <!--					</div><!--/category-tab-->-->
+                <!--					</div><!--/category-tab-->
 
                 <div class="recommended_items"><!--recommended_items-->
                     <h2 class="title text-center">recommended items</h2>
@@ -311,9 +311,9 @@ Add to cart
                                             <div class="productinfo text-center">
                                                 <a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $hit->id]) ?>"><?= \yii\helpers\Html::img("@web/images/products/{$hit->img}",['alt' => $hit->name]) ?></a>
 
-                                                <h2><?= ($hit->sale_price!=0)? "<s>$".$hit->price."</s>&nbsp;&nbsp;$".$hit->sale_price:"$".$hit->price?></h2>
+                                                <h2><?= ($hit->price!=0)? "<s>$".$hit->price."</s>&nbsp;&nbsp;$".$hit->sale_price:"$".$hit->sale_price?></h2>
                                                 <p><a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $hit->id]) ?>"> <?= $hit->name ?></a></p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                                <button type="button" class="btn btn-default add-to-cart" data-id="<?=$hit->id?>"><i class="fa fa-shopping-cart"></i>Add to cart</button>
                                             </div>
                                             <?php if($hit->new): echo \yii\helpers\Html::img("@web/images/home/new.png",['alt' => $hit->name, 'class'=>'new']); endif; ?>
                                             <?php if($hit->sale_price!=0): echo \yii\helpers\Html::img("@web/images/home/sale.png",['alt' => $hit->name, 'class'=>'new']); endif; ?>

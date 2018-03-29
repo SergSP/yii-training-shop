@@ -8,7 +8,7 @@
 
 namespace app\controllers;
 
-
+use Yii;
 use yii\web\Controller;
 
 class AppController extends Controller
@@ -19,4 +19,12 @@ class AppController extends Controller
         $this->view->registerMetaTag(['name' => 'keywords', 'content' => $keywords]);
         $this->view->registerMetaTag(['name' => 'description', 'content' => $description]);
     }
+
+    protected function sessionopen()
+    {
+        $session=Yii::$app->session;
+        $session->open();
+        return $session;
+    }
+
 }
