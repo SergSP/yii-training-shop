@@ -27,4 +27,12 @@ class AppController extends Controller
         return $session;
     }
 
+    protected function clearCart()
+    {
+        $session=$this->sessionopen();
+        $session->remove('cart');
+        $session->remove('cart.qty');
+        $session->remove('cart.sum');
+    }
+
 }

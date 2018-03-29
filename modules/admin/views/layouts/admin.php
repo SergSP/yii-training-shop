@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: serg
+ * Date: 29.03.2018
+ * Time: 21:53
+ */
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -11,8 +17,8 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
-?>
-<?php $this->beginPage() ?>
+
+$this->beginPage() ?>
     <!DOCTYPE html>
     <html lang="<?= Yii::$app->language ?>">
     <head>
@@ -96,8 +102,8 @@ AppAsset::register($this);
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
                                 <?php if(!Yii::$app->user->isGuest): ?>
-                                <li><a href="<?= \yii\helpers\Url::to(['/site/logout']) ?>"><i class="fa fa-user"></i><?= Yii::$app->user->identity['username'] ?> (Выход)</a></li>
-                                <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
+                                    <li><a href="<?= \yii\helpers\Url::to(['/site/logout']) ?>"><i class="fa fa-user"></i><?= Yii::$app->user->identity['username'] ?> (Выход)</a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                                 <?php endif; ?>
                                 <li><a href="<?= \yii\helpers\Url::to(['/cart/view']) ?>"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                                 <li><a href="#" onclick="getCart()"><i class="fa fa-shopping-cart"></i> Cart</a></li>
