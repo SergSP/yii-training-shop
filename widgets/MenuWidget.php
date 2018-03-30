@@ -17,7 +17,7 @@ class MenuWidget extends Widget
     public function init()
     {
         parent::init();
-        if(!in_array($this->tpl,['menu','select'])) $this->tpl='menu';
+        if(!in_array($this->tpl,['menu','select','selectproduct'])) $this->tpl='menu';
         $this->tpl.='.php';
     }
 

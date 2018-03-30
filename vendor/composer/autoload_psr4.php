@@ -12,7 +12,10 @@ return array(
     'yii\\debug\\' => array($vendorDir . '/yiisoft/yii2-debug'),
     'yii\\composer\\' => array($vendorDir . '/yiisoft/yii2-composer'),
     'yii\\bootstrap\\' => array($vendorDir . '/yiisoft/yii2-bootstrap/src'),
-    'yii\\' => array($vendorDir . '/yiisoft/yii2'),
+    'yii\\' => ar' => array($vendorDir . '/yiisoft/yii2'),
+    
+    'mihaildev\\ckeditor\\' =>  array($vendorDir . '/mihaildev/ckeditor'),
+    
     'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),

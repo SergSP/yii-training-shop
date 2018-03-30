@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'img',
                 'value' => function ($model) {
-                    return Html::img("@web/images/products/{$model->img}", ['style' => 'width: 96px']);
+                    return Html::a(Html::img("@web/images/products/{$model->img}", ['style' => 'width: 96px']), ['/product/view', 'id' => $model->id]);
                 },
                 'format' => 'html',
             ],
@@ -51,7 +51,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'content',
                 'value' => function ($model) {
                     return \yii\helpers\StringHelper::truncate($model->content, 127);
-                }
+                },
+                'format' => 'html',
             ],
             //'content:ntext',
             'sale_price',
