@@ -37,7 +37,7 @@ class OrderController extends AppAdminController
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Order::find(),
+            'query' => Order::find()->with(['product']),
             'pagination' => [
                 'pageSize' => 15,
             ],

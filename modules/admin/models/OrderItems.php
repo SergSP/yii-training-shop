@@ -29,6 +29,11 @@ class OrderItems extends \yii\db\ActiveRecord
         return $this->hasOne(Order::className(), ['id' => 'order_id']);
     }
 
+    public function getProduct()
+    {
+        return $this->hasOne(Product::className(),['id' => 'product_id']);
+    }
+
     /**
      * @inheritdoc
      */

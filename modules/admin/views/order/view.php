@@ -61,6 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <tbody>
             <?php foreach($items as $item):?>
                 <tr>
+
                     <td><a href="<?= \yii\helpers\Url::to(['/product/view', 'id' => $item->product_id])?>"><?= $item['name']?></a></td>
                     <td><?= $item['qty_item']?></td>
                     <td><?= $item['price']?></td>

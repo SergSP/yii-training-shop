@@ -90,7 +90,7 @@
                             <p>Web ID: <?= $product->id ?></p>
                             <img src="/images/product-details/rating.png" alt="" />
                             <span>
-                                <span>US <?= ($product->price!=0)? "<s>$".$product->sale_price."</s>&nbsp;&nbsp;$".$product->price:"$".$product->sale_price?></span>
+                                <span>US <?= ($product->price!=0)? "<s>$".$product->price."</s>&nbsp;&nbsp;$".$product->sale_price:"$".$product->sale_price?></span>
                                 <label>Quantity:</label>
                                 <input type="text" value="1" id="qty" />
                                 <button type="button" class="btn btn-fefault cart add-to-cart" data-id="<?=$product->id?>">
