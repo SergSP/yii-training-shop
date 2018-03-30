@@ -9,6 +9,7 @@ use Yii;
 class MenuWidget extends Widget
 {
     public $tpl='menu';
+    public $model;
     public $data;
     public $tree;
     public $menuHTML;
@@ -23,15 +24,18 @@ class MenuWidget extends Widget
     public function run()
     {
         //get cache
-        $menu=Yii::$app->cache->get('menu');
-        if($menu) return $menu;
+        if ($this->tpl == 'menu.php'){
+            $menu = Yii::$app->cache->get('menu');
+            if ($menu) return $menu;
+        }
 
         $this->data = Category::find()->asArray()->indexBy('id')->all();
         $this->tree=$this->getTree();
         $this->menuHTML=$this->getMenuHtml($this->tree);
 
         //set cache
-        Yii::$app->cache->set('menu',$this->menuHTML,60*30);
+        if ($this->tpl == 'menu.php')
+            Yii::$app->cache->set('menu',$this->menuHTML,60*30);
 
         return $this->menuHTML;
     }
@@ -46,16 +50,16 @@ class MenuWidget extends Widget
         return $tree;
     }
 
-    protected function getMenuHtml($tree)
+    protected function getMenuHtml($tree, $tab='')
     {
         $str='';
         foreach ($tree as $category) {
-            $str.=$this->catToTemplate($category);
+            $str.=$this->catToTemplate($category, $tab);
         }
         return $str;
     }
 
-    protected function catToTemplate($category)
+    protected function catToTemplate($category, $tab)
     {
         ob_start();
         include __DIR__.'/menu_template/'.$this->tpl;
